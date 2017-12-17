@@ -1,0 +1,90 @@
+* {
+  box-sizing: border-box;
+}
+body,
+h1,
+h2,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+body {
+  background-color: dodgerblue;
+}
+ul {
+  list-style-type: none;
+}
+button {
+  margin: 5px;
+  margin-left: 0;
+  padding: 0 .5rem;
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+  border: 1px solid black;
+  border-radius: 3px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn-create {
+  background-color: forestgreen;
+}
+.btn-delete {
+  background-color: firebrick;
+}
+
+/* BOARD */
+.board {
+  padding: 5px;
+}
+.board h1,
+.board h2 {
+  font-size: 1.2rem;
+}
+
+/* COLUMN */
+.column-container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.column {
+  margin-right: 5px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  background-color: hsl(0, 0%, 85%);
+  padding: 5px;
+  min-width: 20.75rem;
+}
+
+.column-card-list {
+  border-radius: 5px;
+  background-color: hsl(0, 0%, 85%);
+  min-height: 2rem;
+}
+
+/* CARD */
+.card {
+  border: 1px solid white;
+  border-radius: 5px;
+  background-color: hsl(0, 0%, 95%);
+  width: 20rem;
+  line-height: 1.5rem;
+}
+.card p {
+  margin: 5px;
+}
+.card button {
+  float: right;
+}
+.card:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.highlight {
+  border: 2px dotted forestgreen;
+  border-radius: 5px;
+  height: 2rem;
+}

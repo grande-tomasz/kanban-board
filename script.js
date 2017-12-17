@@ -9,7 +9,7 @@ $(function() {
     return str;
   }
 
-  // Board object
+  // BOARD OBJECT
   var board = {
     name: "Kanban Board",
     $element: $("#board .column-container"),
@@ -22,7 +22,13 @@ $(function() {
   function initSortable() {
     $(".column-card-list").sortable({
       connectWith: ".column-card-list",
-      placeholder: "card-placeholder"
+      placeholder: "highlight"
+    //   ,start: function (event, ui) {
+    //     ui.item.toggleClass("highlight");
+    //   },
+    //   stop: function (event, ui) {
+    //     ui.item.toggleClass("highlight");
+    //   }
     }).disableSelection();
   }
   $(".create-column").click(function() {
@@ -32,9 +38,9 @@ $(function() {
     // board.addColumn(new Column(prompt("Enter a column name")));
   });
 
-  // Column class
+  // COLUMN CLASS
   function Column(name) {
-    var self = this; // useful for nested functions
+    var self = this;
 
     this.id = randomString();
     this.name = name;
@@ -44,8 +50,8 @@ $(function() {
       var $column = $("<div>").addClass("column");
       var $columnTitle = $("<h2>").addClass("column-title").text(self.name);
       var $columnCardList = $("<ul>").addClass("column-card-list");
-      var $columnDelete = $("<button>").addClass("btn-delete").text("x");
-      var $columnAddCard = $("<button>").addClass("add-card").text("Add a card");
+      var $columnAddCard = $("<button>").addClass("btn-create").text("Add a card");
+      var $columnDelete = $("<button>").addClass("btn-delete").text("X");
 
       $columnDelete.click(function() {
         self.removeColumn();
@@ -55,8 +61,8 @@ $(function() {
       });
 
       $column.append($columnTitle)
-        .append($columnDelete)
         .append($columnAddCard)
+        .append($columnDelete)
         .append($columnCardList);
       
       return $column;
@@ -71,7 +77,7 @@ $(function() {
     }
   };
 
-  // Card class
+  // CARD CLASS
   function Card(description) {
     var self = this;
     
@@ -82,7 +88,7 @@ $(function() {
     function createCard() {
       var $card = $("<li>").addClass("card");
       var $cardDescription = $("<p>").addClass("card-description").text(self.description);
-      var $cardDelete = $("<button>").addClass("btn-delete").text("x");
+      var $cardDelete = $("<button>").addClass("btn-delete").text("X");
 
       $cardDelete.click(function(){
         self.removeCard();
@@ -100,60 +106,19 @@ $(function() {
     }
   };
 
-  // CREATING COLUMNS
+  // MAIN
   var toDoColumn = new Column("TO DO");
   var inProgressColumn = new Column("IN PROGRESS");
   var finishedColumn = new Column("FINISHED");
 
-  // ADDING COLUMNS TO THE BOARD
   board.addColumn(toDoColumn);
   board.addColumn(inProgressColumn);
   board.addColumn(finishedColumn);
 
-  // CREATING CARDS
   var toDoCard = new Card("toDoCard");
   var inProgressCard = new Card("inProgressCard");
 
-  // ADDING CARDS TO COLUMNS
   toDoColumn.addCard(toDoCard);
   inProgressColumn.addCard(inProgressCard);
   
 });
-
-// Klasa Card
-
-
-/*
-var table = {
-  name: "project",
-  element: $("div"),
-  addNewColumn: function() {
-
-  }
-};
-
-var column = {
-  id: "12j82da20k",
-  name: "To Do",
-  element: $("div"),
-  removeColumn: function() {
-
-  },
-  createNewCard: function() {
-
-  }
-};
-
-var card = {
-  id: "2kd8s958ka",
-  description: "Create Kanban app",
-  color: "green",
-  element: $("div"),
-  removeCard: function() {
-
-  },
-  moveCard: function() {
-
-  }
-};
-*/
