@@ -13,6 +13,11 @@ ul {
 body {
   background-color: dodgerblue;
 }
+h1,
+h2,
+h3 {
+  display: inline-block;
+}
 ul {
   list-style-type: none;
 }
@@ -28,11 +33,27 @@ button {
   font-weight: bold;
   cursor: pointer;
 }
+
+.btn-create,
+.btn-delete {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.7);
+}
+
 .btn-create {
-  background-color: forestgreen;
+  margin-left: 10px;
 }
 .btn-delete {
-  background-color: firebrick;
+  float: right;
+}
+
+.btn-create:hover {
+  background-color: rgba(34, 139, 34, 0.5);
+  color: white;
+}
+.btn-delete:hover {
+  background-color: rgba(178, 34, 34, 0.5);
+  color: white;
 }
 
 /* BOARD */
@@ -74,9 +95,6 @@ button {
 }
 .card p {
   margin: 5px;
-}
-.card button {
-  float: right;
 }
 .card:after {
   content: "";
