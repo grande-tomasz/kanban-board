@@ -1,22 +1,31 @@
-function randomString() {
-  var chars = "0123456789abcdefghiklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXTZ";
-  var str = "";
-  for (var i = 0; i < 10; i++) {
-    str += chars[Math.floor(Math.random() * chars.length)];
+var baseUrl = "https://kodilla.com/pl/bootcamp-api";
+var myHeaders = {
+  "X-Client-Id": "2695",
+  "X-Auth-Token": "63def24bff4caa4d4fb266687e0f1bd0"
+};
+$.ajaxSetup({
+  headers: myHeaders
+});
+
+$.ajax({
+  url: baseUrl + "/board",
+  method: "GET",
+  success: function(response) {
+    setupColumns(response.columns);
   }
-  return str;
+});
+
+function setupColumns(columns) {
+  columns.forEach(function (column) {
+    var col = new Column(column.id, column.name);
+    board.addColumn(col);
+    setupCards(col, column.cards);
+  });
 }
 
-var toDoColumn = new Column("TO DO");
-var inProgressColumn = new Column("IN PROGRESS");
-var finishedColumn = new Column("FINISHED");
-
-board.addColumn(toDoColumn);
-board.addColumn(inProgressColumn);
-board.addColumn(finishedColumn);
-
-var toDoCard = new Card("toDoCard");
-var inProgressCard = new Card("inProgressCard");
-
-toDoColumn.addCard(toDoCard);
-inProgressColumn.addCard(inProgressCard);
+function setupCards(col, cards) {
+  cards.forEach(function (card) {
+    var card = new Card(card.id, card.name, card.bootcamp_kanban_column_id);
+    col.addCard(card);
+  });
+}

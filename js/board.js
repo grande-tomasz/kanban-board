@@ -14,5 +14,18 @@ function initSortable() {
   }).disableSelection();
 }
 $(".board > .btn-create").click(function() {
-  board.addColumn(new Column(prompt("Enter a column name")));
+  var columnName = prompt("Enter a column name");
+  
+  $.ajax({
+    url: baseUrl + "/column",
+    method: "POST",
+    data: {
+      name: columnName
+    },
+    success: function(response) {
+      var column = new Column(response.id, columnName);
+      board.addColumn(column);
+    }
+  });
+  
 });
