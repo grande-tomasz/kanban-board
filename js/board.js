@@ -3,16 +3,9 @@ var board = {
   $element: $("#board .column-container"),
   addColumn: function(column) {
     this.$element.append(column.$element);
-    initSortable();
   }
   
 };
-function initSortable() {
-  $(".column-card-list").sortable({
-    connectWith: ".column-card-list",
-    placeholder: "highlight"
-  }).disableSelection();
-}
 $(".board > .btn-create").click(function() {
   var columnName = prompt("Enter a column name");
   
@@ -27,5 +20,5 @@ $(".board > .btn-create").click(function() {
       board.addColumn(column);
     }
   });
-  
+
 });

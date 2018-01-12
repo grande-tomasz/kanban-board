@@ -15,10 +15,32 @@ $.ajax({
   }
 });
 
+function initSortable() {
+  $(".column-card-list").sortable({
+    connectWith: ".column-card-list",
+    placeholder: "highlight",
+    receive: function(event, ui) {
+      // console.log("card id:"+ui.item.attr("id"));
+      // console.log("card text:"+ ui.item.children("p").text());
+      // console.log("new column id:"+ui.item.closest(".column").attr("id"));
+      $.ajax({
+        url: baseUrl + "/card/" + ui.item.attr("id"),
+        method: "PUT",
+        data: {
+          name: ui.item.children("p").text(),
+          bootcamp_kanban_column_id: ui.item.closest(".column").attr("id")
+        }
+      });
+    }
+
+  }).disableSelection();
+}
+
 function setupColumns(columns) {
   columns.forEach(function (column) {
     var col = new Column(column.id, column.name);
     board.addColumn(col);
+    initSortable();
     setupCards(col, column.cards);
   });
 }

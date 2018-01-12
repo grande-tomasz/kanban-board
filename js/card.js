@@ -6,7 +6,7 @@ function Card(id, name) {
   this.$element = createCard();
   
   function createCard() {
-    var $card = $("<li>").addClass("card");
+    var $card = $("<li>").addClass("card").attr("id", String(self.id));
     var $cardDescription = $("<p>").addClass("card-name").text(self.name);
     var $cardDelete = $("<button>").addClass("btn-delete").text("X");
 
@@ -28,9 +28,9 @@ Card.prototype = {
       url: baseUrl + "/card/" + self.id,
       method: "DELETE",
       success: function(){
-        self.element.remove();
+        self.$element.remove();
       }
     });
-    
+
   }
 };

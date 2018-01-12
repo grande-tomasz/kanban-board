@@ -6,7 +6,7 @@ function Column(id, name) {
   this.$element = createColumn();
 
   function createColumn() {
-    var $column = $("<div>").addClass("column");
+    var $column = $("<div>").addClass("column").attr("id", String(self.id));
     var $columnTitle = $("<h2>").addClass("column-title").text(self.name);
     var $columnCardList = $("<ul>").addClass("column-card-list");
     var $columnAddCard = $("<button>").addClass("btn-create").text("Add a card");
