@@ -4,11 +4,10 @@ var board = {
   addColumn: function(column) {
     this.$element.append(column.$element);
   }
-  
 };
 $(".board > .btn-create").click(function() {
   var columnName = prompt("Enter a column name");
-  
+
   $.ajax({
     url: baseUrl + "/column",
     method: "POST",
@@ -20,5 +19,4 @@ $(".board > .btn-create").click(function() {
       board.addColumn(column);
     }
   });
-
 });

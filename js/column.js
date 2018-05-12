@@ -6,11 +6,19 @@ function Column(id, name) {
   this.$element = createColumn();
 
   function createColumn() {
-    var $column = $("<div>").addClass("column").attr("id", String(self.id));
-    var $columnTitle = $("<h2>").addClass("column-title").text(self.name);
+    var $column = $("<div>")
+      .addClass("column")
+      .attr("id", String(self.id));
+    var $columnTitle = $("<h2>")
+      .addClass("column-title")
+      .text(self.name);
     var $columnCardList = $("<ul>").addClass("column-card-list");
-    var $columnAddCard = $("<button>").addClass("btn-create").text("Add a card");
-    var $columnDelete = $("<button>").addClass("btn-delete").text("X");
+    var $columnAddCard = $("<button>")
+      .addClass("btn-create")
+      .text("Add a card");
+    var $columnDelete = $("<button>")
+      .addClass("btn-delete")
+      .text("X");
 
     $columnDelete.click(function() {
       self.removeColumn();
@@ -18,7 +26,7 @@ function Column(id, name) {
     $columnAddCard.click(function(event) {
       var cardName = prompt("Enter the name of the card");
       event.preventDefault();
-      
+
       $.ajax({
         url: baseUrl + "/card",
         method: "POST",
@@ -31,14 +39,14 @@ function Column(id, name) {
           self.addCard(card);
         }
       });
-
     });
 
-    $column.append($columnTitle)
+    $column
+      .append($columnTitle)
       .append($columnAddCard)
       .append($columnDelete)
       .append($columnCardList);
-    
+
     return $column;
   }
 }
@@ -56,6 +64,5 @@ Column.prototype = {
         self.$element.remove();
       }
     });
-
   }
 };
